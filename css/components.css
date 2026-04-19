@@ -1,0 +1,484 @@
+/* ════════════════════════════════════════════════════════
+   components.css — Composants UI réutilisables :
+   boutons, badges, avatars, toggle, cartes, modal, toast
+   ════════════════════════════════════════════════════════ */
+
+
+/* ────────────────────────────────────────────────────────
+   BOUTONS
+   ──────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--r-md);
+  font-family: var(--fb);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border-md);
+  background: var(--surface);
+  color: var(--txt);
+  transition: all var(--tr);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+.btn:hover   { background: var(--surface2); }
+.btn:active  { transform: scale(.98); }
+.btn:disabled { opacity: .45; cursor: not-allowed; pointer-events: none; }
+
+/* Variantes de couleur */
+.btn-primary { background: var(--green); color: #fff; border-color: var(--green); box-shadow: 0 2px 6px rgba(26,158,96,.25); }
+.btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+.btn-ghost { border-color: transparent; background: transparent; }
+.btn-ghost:hover { background: var(--surface2); }
+
+.btn-edit   { background: var(--amber-light); color: var(--amber); border-color: rgba(201,122,16,.3); }
+.btn-edit:hover { background: #fae3b8; }
+
+.btn-delete { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 2px 6px rgba(217,53,53,.2); }
+.btn-delete:hover { background: #bb2929; }
+
+.btn-players { background: var(--blue-light); color: var(--blue); border-color: rgba(26,107,181,.2); }
+.btn-players:hover { background: #c4d9f3; }
+
+.btn-session { background: var(--purple-light); color: var(--purple); border-color: rgba(108,62,184,.2); }
+.btn-session:hover { background: #e2d6f8; }
+
+.btn-danger { color: var(--red); border-color: rgba(217,53,53,.25); background: transparent; }
+.btn-danger:hover { background: var(--red-light); }
+
+/* Tailles */
+.btn-sm   { padding: 6px 12px; font-size: 13px; }
+.btn-xs   { padding: 4px 10px; font-size: 12px; }
+.btn-icon { padding: 7px; }
+.btn-icon svg { display: block; width: 16px; height: 16px; }
+
+
+/* ────────────────────────────────────────────────────────
+   BADGES
+   ──────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+.badge-open    { background: var(--green-light); color: var(--green-dark); }
+.badge-full    { background: var(--red-light);   color: var(--red); }
+.badge-admin   { background: var(--blue-light);  color: var(--blue); }
+.badge-past    { background: var(--grey-light);  color: var(--grey); }
+.badge-almost  { background: var(--amber-light); color: var(--amber); }
+.badge-session { background: var(--purple-light);color: var(--purple); }
+
+
+/* ────────────────────────────────────────────────────────
+   PILL PLACES DISPONIBLES (plus visible que le badge)
+   ──────────────────────────────────────────────────────── */
+.places-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 99px;
+  flex-shrink: 0;
+  letter-spacing: .01em;
+}
+.places-pill.open   { background: var(--green-light); color: var(--green-dark); border: 1px solid rgba(26,158,96,.2); }
+.places-pill.almost { background: var(--amber-light); color: var(--amber);      border: 1px solid rgba(201,122,16,.2); }
+.places-pill.full   { background: var(--red-light);   color: var(--red);        border: 1px solid rgba(217,53,53,.2); }
+.places-pill.past   { background: var(--grey-light);  color: var(--grey);       border: 1px solid rgba(0,0,0,.1); }
+
+
+/* ────────────────────────────────────────────────────────
+   AVATARS
+   ──────────────────────────────────────────────────────── */
+.avatar {
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-family: var(--fh);
+}
+.avatar-sm { width: 28px; height: 28px; font-size: 11px; }
+.avatar-md { width: 36px; height: 36px; font-size: 13px; }
+
+/* Pile d'avatars (chevauchement) */
+.av-stack { display: flex; }
+.av-stack .avatar { border: 2px solid var(--surface); margin-left: -7px; }
+.av-stack .avatar:first-child { margin-left: 0; }
+
+
+/* ────────────────────────────────────────────────────────
+   TOGGLE (interrupteur admin)
+   ──────────────────────────────────────────────────────── */
+.toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border-md);
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 16px; height: 16px;
+  left: 3px; top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.toggle input:checked + .toggle-slider { background: var(--green); }
+.toggle input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+
+/* ────────────────────────────────────────────────────────
+   CARTES GÉNÉRIQUES
+   ──────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  box-shadow: var(--sh-sm);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   CARTE MATCH
+   ──────────────────────────────────────────────────────── */
+.match-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  box-shadow: var(--sh-sm);
+  transition: box-shadow var(--tr), transform var(--tr);
+  animation: fadeUp .22s ease backwards;
+}
+.match-card:hover { box-shadow: var(--sh-md); transform: translateY(-1px); }
+.match-card + .match-card { margin-top: 10px; }
+
+/* État : match passé */
+.match-card.past {
+  opacity: .72;
+  border-style: dashed;
+  background: var(--surface2);
+}
+.match-card.past:hover { opacity: 1; }
+
+/* Sous-parties de la carte */
+.match-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.match-title {
+  font-family: var(--fh);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--txt);
+  margin-bottom: 3px;
+}
+.match-sub {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--txt2);
+}
+.match-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.match-sub-item svg { width: 13px; height: 13px; opacity: .6; flex-shrink: 0; }
+.match-desc { font-size: 13px; color: var(--txt3); margin-bottom: 10px; }
+
+.match-card-bottom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.match-session-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--purple);
+  background: var(--purple-light);
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-left: 4px;
+}
+
+/* Barre de progression (joueurs inscrits) */
+.progress-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress-track {
+  flex: 1;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--surface2);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: var(--green);
+  transition: width .5s ease;
+}
+.progress-fill.almost { background: var(--amber); }
+.progress-fill.full   { background: var(--red); }
+.progress-text { font-size: 12px; color: var(--txt3); white-space: nowrap; }
+
+/* Rangée d'actions admin sur une carte */
+.admin-btn-row {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   LISTE DE JOUEURS (dans la modale)
+   ──────────────────────────────────────────────────────── */
+.player-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+}
+.player-row:last-child { border-bottom: none; }
+.player-row-left  { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.player-row-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.player-name { font-size: 14px; font-weight: 500; }
+.player-sub  { font-size: 12px; color: var(--txt3); }
+
+/* Badge invité externe */
+.player-external {
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--amber-light);
+  color: var(--amber);
+  padding: 2px 7px;
+  border-radius: 99px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   ONGLETS (tabs)
+   ──────────────────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--surface2);
+  border-radius: var(--r-md);
+  padding: 3px;
+  width: fit-content;
+}
+.tab-item {
+  padding: 7px 16px;
+  border-radius: calc(var(--r-md) - 2px);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--txt2);
+  cursor: pointer;
+  transition: all var(--tr);
+  user-select: none;
+}
+.tab-item.active { background: var(--surface); color: var(--txt); box-shadow: var(--sh-sm); }
+.tab-item:hover:not(.active) { color: var(--txt); }
+
+
+/* ────────────────────────────────────────────────────────
+   FILTRES (chips)
+   ──────────────────────────────────────────────────────── */
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.filter-chip {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border-md);
+  background: var(--surface);
+  color: var(--txt2);
+  cursor: pointer;
+  transition: all var(--tr);
+  user-select: none;
+}
+.filter-chip.active { background: var(--green); color: #fff; border-color: var(--green); }
+.filter-chip:hover:not(.active) { background: var(--surface2); color: var(--txt); }
+
+
+/* ────────────────────────────────────────────────────────
+   MODAL
+   ──────────────────────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(20, 20, 18, .55);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn .15s ease;
+  overflow-y: auto;
+}
+.modal-box {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 460px;
+  padding: 28px;
+  box-shadow: var(--sh-lg);
+  animation: slideUp .2s ease;
+  margin: auto;
+}
+.modal-box.wide { max-width: 520px; }
+.modal-title {
+  font-family: var(--fh);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.modal-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+/* Champs de formulaire dans la modal */
+.form-group  { margin-bottom: 14px; }
+.form-label  { display: block; font-size: 12px; font-weight: 500; color: var(--txt2); margin-bottom: 5px; }
+.form-row    { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-hint   { font-size: 11px; color: var(--txt3); margin-top: 4px; }
+
+
+/* ────────────────────────────────────────────────────────
+   TOAST (notification éphémère)
+   ──────────────────────────────────────────────────────── */
+.toast-wrap {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.toast {
+  background: var(--txt);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--sh-md);
+  animation: toastIn .2s ease, toastOut .2s ease 2.8s forwards;
+  white-space: nowrap;
+}
+.toast.success { background: var(--green); }
+.toast.error   { background: var(--red); }
+.toast.info    { background: var(--blue); }
+
+
+/* ────────────────────────────────────────────────────────
+   POINT TEMPS RÉEL (pulsation verte)
+   ──────────────────────────────────────────────────────── */
+.rt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   ÉTAT VIDE
+   ──────────────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--txt3);
+  font-size: 14px;
+}
+.empty-state svg {
+  width: 40px;
+  height: 40px;
+  opacity: .2;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   SÉPARATEUR "Matchs passés"
+   ──────────────────────────────────────────────────────── */
+.past-separator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--txt3);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.past-separator::before,
+.past-separator::after { content: ''; flex: 1; height: 1px; background: var(--border-md); }
+
+
+/* ────────────────────────────────────────────────────────
+   FORMULAIRE LOGIN Google
+   ──────────────────────────────────────────────────────── */
+.btn-google {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border-md);
+  color: var(--txt);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--tr);
+  font-family: var(--fb);
+}
+.btn-google:hover { background: var(--surface2); box-shadow: var(--sh-md); }

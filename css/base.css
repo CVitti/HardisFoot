@@ -1,0 +1,62 @@
+/* ════════════════════════════════════════════════════════
+   base.css — Reset, styles globaux, formulaires
+   ════════════════════════════════════════════════════════ */
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fb);
+  background: var(--bg);
+  color: var(--txt);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── Scrollbar personnalisée ── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--border-md); border-radius: 99px; }
+
+/* ── Inputs & selects ── */
+input,
+select,
+textarea {
+  font-family: var(--fb);
+  font-size: 14px;
+  color: var(--txt);
+  background: var(--surface);
+  border: 1px solid var(--border-md);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+  outline: none;
+  width: 100%;
+  transition: border-color var(--tr), box-shadow var(--tr);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(26, 158, 96, .12);
+}
+
+input:disabled,
+select:disabled {
+  color: var(--txt3);
+  background: var(--surface2);
+  cursor: not-allowed;
+}
+
+/* ── Utilitaires texte ── */
+.text-sm   { font-size: 13px; }
+.text-xs   { font-size: 12px; }
+.text-muted { color: var(--txt3); }
