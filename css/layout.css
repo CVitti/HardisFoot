@@ -7,7 +7,7 @@
 /* ────────────────────────────────────────────────────────
    NAVIGATION (sticky, avec flou d'arrière-plan)
    ──────────────────────────────────────────────────────── */
-#nav {
+#navbar {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -15,7 +15,7 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
-  padding: 0 20px;
+  padding: 0 10px;
   height: 58px;
   display: flex;
   align-items: center;
@@ -33,15 +33,14 @@
   cursor: pointer;
 }
 .nav-logo-ball {
-  width: 32px;
-  height: 32px;
+  width: 58px;
+  height: 58px;
   background: var(--green);
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.nav-logo-ball svg { width: 18px; height: 18px; }
+.nav-logo-ball svg { width: 42px; height: 42px; }
 
 .nav-right { display: flex; align-items: center; gap: 10px; }
 .nav-user  { display: flex; align-items: center; gap: 8px; }
@@ -200,7 +199,6 @@
 .login-icon {
   width: 64px;
   height: 64px;
-  background: var(--green-light);
   border-radius: 18px;
   display: flex;
   align-items: center;

@@ -6,8 +6,11 @@
    temps réel (Supabase, Firebase, WebSocket…).
 
    Structure d'un match :
-     { id, date, time, lieu, session, description,
+     { id, date, time, lieu, session, maxPlayers, description,
        playerIds[], externalPlayers[], version }
+
+   maxPlayers : capacité propre à chaque match (défaut : CONFIG.MAX_PLAYERS).
+   Utiliser matchMax(match) plutôt que CONFIG.MAX_PLAYERS dans le code.
 
    Structure d'un utilisateur :
      { id, name, email, avatar, isAdmin, external }
@@ -32,27 +35,27 @@ if (!window._DB) {
     /* ── Matchs planifiés ── */
     matches: [
       {
-        id: 1, date: '2025-04-10', time: '12:15',
+        id: 1, date: '2026-04-10', time: '12:15',
         lieu: 'Stade Joseph Guetat, Seyssinet-Pariset',
-        session: 1, description: 'Match régulier.',
+        session: 1, maxPlayers: 18, description: 'Match régulier.',
         playerIds: [1, 2, 4], externalPlayers: [], version: 1,
       },
       {
-        id: 2, date: '2025-04-17', time: '12:15',
+        id: 2, date: '2026-04-17', time: '12:15',
         lieu: 'Stade Joseph Guetat, Seyssinet-Pariset',
-        session: 1, description: '',
+        session: 1, maxPlayers: 18, description: '',
         playerIds: [1, 2, 4, 5, 6], externalPlayers: [], version: 1,
       },
       {
-        id: 3, date: '2025-04-24', time: '12:15',
+        id: 3, date: '2027-04-24', time: '12:15',
         lieu: 'Stade Joseph Guetat, Seyssinet-Pariset',
-        session: 1, description: 'Tournoi interne, présence souhaitée.',
+        session: 1, maxPlayers: 18, description: 'Tournoi interne, présence souhaitée.',
         playerIds: [5, 6], externalPlayers: [], version: 1,
       },
       {
         id: 4, date: '2025-05-01', time: '12:15',
         lieu: 'Stade Joseph Guetat, Seyssinet-Pariset',
-        session: 1, description: '',
+        session: 1, maxPlayers: 18, description: '',
         playerIds: [], externalPlayers: [], version: 1,
       },
     ],

@@ -1,40 +1,35 @@
 /* ════════════════════════════════════════════════════════
    views/home.js — Vue principale pour les joueurs
    Affiche le hero, les filtres et la liste des matchs.
+   Les matchs passés sont masqués pour les joueurs :
+   seuls les admins y ont accès (via views/admin.js).
    ════════════════════════════════════════════════════════ */
 
 /**
  * Injecte la vue joueur dans #main.
- * Sépare les matchs à venir et les matchs passés.
- * Les matchs passés sont affichés en bas avec un séparateur visuel.
+ * Seuls les matchs à venir sont affichés.
  */
 function renderHome() {
   const uid    = App.currentUser.id;
   const filter = App.filter;
 
-  // Trier : à venir (chrono asc) et passés (chrono desc, plus récent en premier)
-  let future = DB.matches
+  // Les joueurs ne voient que les matchs à venir (non passés)
+  let matches = DB.matches
     .filter(m => !isMatchPast(m))
     .sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
-  let past = DB.matches
-    .filter(m => isMatchPast(m))
-    .sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
-
   // Appliquer les filtres
   if (filter === 'open') {
-    future = future.filter(m => matchFilled(m) < CONFIG.MAX_PLAYERS);
-    past   = []; // Les matchs passés ne sont jamais "ouverts"
+    // Utilise matchMax(m) propre à chaque match
+    matches = matches.filter(m => matchFilled(m) < matchMax(m));
   }
   if (filter === 'joined') {
-    future = future.filter(m => m.playerIds.includes(uid));
-    past   = past.filter(m => m.playerIds.includes(uid));
+    matches = matches.filter(m => m.playerIds.includes(uid));
   }
 
-  // Chips de filtre avec compteurs
-  const totalFuture = DB.matches.filter(m => !isMatchPast(m)).length;
+  // Chips de filtre
   const filters = [
-    ['all',    `Tous (${DB.matches.length})`],
+    ['all',    `Tous (${DB.matches.filter(m => !isMatchPast(m)).length})`],
     ['open',   'Places disponibles'],
     ['joined', 'Mes inscriptions'],
   ];
@@ -44,13 +39,10 @@ function renderHome() {
           onclick="App.filter = '${k}'; App.render()">${l}</div>`
   ).join('');
 
-  // Contenu des matchs
-  const futureHTML = future.map(m => matchCardHTML(m, false)).join('');
-  const pastHTML   = past.length > 0
-    ? `<div class="past-separator">Matchs passés</div>${past.map(m => matchCardHTML(m, false)).join('')}`
-    : '';
-  const emptyHTML  = future.length === 0 && past.length === 0
-    ? `<div class="empty-state">${icon('football')}<div>Aucun match pour ce filtre.</div></div>`
+  const matchesHTML = matches.map(m => matchCardHTML(m, false)).join('');
+
+  const emptyHTML = matches.length === 0
+    ? `<div class="empty-state">${icon('football_black')}<div>Aucun match pour ce filtre.</div></div>`
     : '';
 
   document.getElementById('main').innerHTML = `
@@ -65,8 +57,7 @@ function renderHome() {
 
     <div class="page-content">
       <div class="filter-bar">${filtersHTML}</div>
-      ${futureHTML}
-      ${pastHTML}
+      ${matchesHTML}
       ${emptyHTML}
     </div>`;
 }

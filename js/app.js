@@ -123,8 +123,8 @@ const App = {
       toast('Désinscription confirmée.');
     } else {
       // Vérification quota avant inscription
-      if (matchFilled(match) >= CONFIG.MAX_PLAYERS) {
-        toast('Match complet — ' + CONFIG.MAX_PLAYERS + ' joueurs max.', 'error');
+      if (matchFilled(match) >= matchMax(match)) {
+        toast('Match complet — ' + matchMax(match) + ' joueurs max.', 'error');
         this.render();
         return;
       }
@@ -150,6 +150,7 @@ const App = {
     DB.matches.push({
       ...data,
       id:              DB.nextMatchId++,
+      maxPlayers:      data.maxPlayers || CONFIG.MAX_PLAYERS,
       playerIds:       [],
       externalPlayers: [],
       version:         1,
@@ -202,6 +203,7 @@ const App = {
       time:            src.time,
       lieu:            src.lieu,
       session:         nextSession,
+      maxPlayers:      src.maxPlayers || CONFIG.MAX_PLAYERS,
       description:     src.description,
       playerIds:       [],
       externalPlayers: [],
@@ -229,8 +231,8 @@ const App = {
       toast('Ce joueur est déjà inscrit.', 'error');
       return;
     }
-    if (matchFilled(match) >= CONFIG.MAX_PLAYERS) {
-      toast('Match complet — ' + CONFIG.MAX_PLAYERS + ' joueurs max.', 'error');
+    if (matchFilled(match) >= matchMax(match)) {
+      toast('Match complet — ' + matchMax(match) + ' joueurs max.', 'error');
       return;
     }
 
@@ -267,7 +269,7 @@ const App = {
     if (!match) return;
 
     if (!name.trim()) { toast('Nom requis.', 'error'); return; }
-    if (matchFilled(match) >= CONFIG.MAX_PLAYERS) {
+    if (matchFilled(match) >= matchMax(match)) {
       toast('Match complet.', 'error');
       return;
     }
@@ -353,7 +355,7 @@ const App = {
    * Délègue à la vue correspondant à currentView.
    */
   render() {
-    renderNav();
+    renderNavBar();
 
     switch (this.currentView) {
       case 'login': renderLogin(); break;

@@ -27,7 +27,8 @@ function renderHero() {
   }
 
   const filled    = matchFilled(next);
-  const remaining = matchRemaining(next);
+  const max       = matchMax(next);
+  const remaining = max - filled;
   const isFull    = remaining <= 0;
   const uid       = App.currentUser?.id;
   const joined    = uid && next.playerIds.includes(uid);
@@ -89,7 +90,7 @@ function renderHero() {
             <div class="hero-spots-divider"></div>
             <div>
               <div class="hero-spots-num">${filled}</div>
-              <div class="hero-spots-lbl">inscrit${filled !== 1 ? 's' : ''} / ${CONFIG.MAX_PLAYERS}</div>
+              <div class="hero-spots-lbl">inscrit${filled !== 1 ? 's' : ''} / ${max}</div>
             </div>
           </div>
 

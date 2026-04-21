@@ -71,6 +71,7 @@ Pas de framework. Pas de build. Un seul `index.html` à ouvrir — c'est tout.
 La connexion Google est **simulée** côté client. En cliquant sur le bouton,
 un sélecteur de profil apparaît avec les comptes définis dans `js/database.js`.
 
+
 **En production**, remplacer `showAccountPicker()` dans `js/views/login.js`
 par le flux OAuth 2.0 de Google Identity Services.
 
@@ -79,14 +80,14 @@ par le flux OAuth 2.0 de Google Identity Services.
 ## ◈ TEMPS RÉEL
 
 Le site simule la synchronisation entre utilisateurs via un **polling** toutes
-les **3 secondes**. Chaque match porte un numéro de `version` qui s'incrémente
+les **X secondes**. Chaque match porte un numéro de `version` qui s'incrémente
 à chaque modification. Si un changement est détecté, la vue se rafraîchit
 silencieusement.
 
 ```
 Client A s'inscrit
   → match.version++
-  → Client B poll (3s plus tard)
+  → Client B poll (Xs plus tard)
   → version différente détectée
   → re-render automatique ✓
 ```
@@ -136,25 +137,6 @@ async toggleJoin(matchId) {
 
 ---
 
-## ◈ PERSONNALISATION
-
-Tout se passe dans **`js/config.js`** :
-
-```js
-const CONFIG = Object.freeze({
-  LIEU_DEFAUT:          'Stade Joseph Guetat, Seyssinet-Pariset',
-  MAX_PLAYERS:          18,
-  MATCH_TIME:           '12:15',
-  MATCH_DAY_OF_WEEK:    4,      // 0 = dim, 1 = lun … 6 = sam
-  SYNC_INTERVAL:        3000,   // ms
-  ALMOST_FULL_THRESHOLD: 70,    // % de remplissage
-});
-```
-
-Pour changer les couleurs, modifier les variables CSS dans **`css/tokens.css`**.
-
----
-
 ## ◈ STACK TECHNIQUE
 
 ```
@@ -174,3 +156,4 @@ Build        Aucun — fichiers statiques
 [ ] Intégration Google OAuth réelle
 [ ] Backend API (Node.js / Supabase / Firebase)
 ```
+

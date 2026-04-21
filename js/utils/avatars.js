@@ -27,22 +27,25 @@ function avColor(id) {
 
 /**
  * Génère le HTML d'un avatar (membre ou invité externe).
- * @param {{ id: number, avatar: string, external?: boolean }} user
+ * Inclut un attribut title pour l'infobulle au survol.
+ * @param {{ id: number, avatar: string, name?: string, external?: boolean }} user
  * @param {string} cls  Classe CSS de taille ('avatar-sm' | 'avatar-md')
  * @returns {string} HTML
  */
 function avHTML(user, cls = 'avatar-sm') {
+  const label = escHtml(user.name || user.avatar || '?');
   if (user.external) {
     // Invités externes : couleur ambre fixe
-    return `<div class="avatar ${cls}" style="background:#fdf0dc;color:#c97a10">${user.avatar || '?'}</div>`;
+    return `<div class="avatar ${cls}" style="background:#fdf0dc;color:#c97a10" title="${label}">${user.avatar || '?'}</div>`;
   }
   const [bg, fg] = avColor(user.id);
-  return `<div class="avatar ${cls}" style="background:${bg};color:${fg}">${user.avatar}</div>`;
+  return `<div class="avatar ${cls}" style="background:${bg};color:${fg}" title="${label}">${user.avatar}</div>`;
 }
 
 /**
  * Génère le HTML d'une pile d'avatars (membres + invités),
  * avec un "+N" si le nombre dépasse le maximum affiché.
+ * Chaque avatar porte un title avec le nom du joueur.
  * @param {{ playerIds: number[], externalPlayers: object[] }} match
  * @param {number} max  Nombre maximum d'avatars visibles
  * @returns {string} HTML
@@ -62,10 +65,14 @@ function avStackHTML(match, max = 5) {
   const shown = all.slice(0, max);
   const total = all.length;
 
+  // Noms des joueurs cachés (ceux qui ne sont pas affichés)
+  const hiddenNames = all.slice(max).map(p => p.name || p.avatar).join(', ');
+
   let html = '<div class="av-stack">';
   shown.forEach(p => { html += avHTML(p, 'avatar-sm'); });
   if (total > max) {
-    html += `<div class="avatar avatar-sm" style="background:var(--surface2);color:var(--txt3)">+${total - max}</div>`;
+    html += `<div class="avatar avatar-sm" style="background:var(--surface2);color:var(--txt3)"
+                  title="${escHtml(hiddenNames)}">+${total - max}</div>`;
   }
   return html + '</div>';
 }

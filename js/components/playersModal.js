@@ -23,9 +23,10 @@ function renderPlayersModal(matchId) {
 
   const members   = match.playerIds.map(id => DB.users.find(u => u.id === id)).filter(Boolean);
   const externals = match.externalPlayers || [];
+  const max       = matchMax(match);
   const filled    = matchFilled(match);
   const remaining = matchRemaining(match);
-  const isFull    = filled >= CONFIG.MAX_PLAYERS;
+  const isFull    = filled >= max;
 
   // Membres du club non encore inscrits à ce match
   const available = DB.users.filter(u => !u.external && !match.playerIds.includes(u.id));
@@ -39,7 +40,7 @@ function renderPlayersModal(matchId) {
     </div>
     <div style="font-size:14px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px;
                 color:${isFull ? 'var(--red)' : 'var(--txt2)'}">
-      ${filled} / ${CONFIG.MAX_PLAYERS} joueurs
+      ${filled} / ${max} joueurs
       ${isFull
         ? '<span class="badge badge-full">Complet</span>'
         : `<span class="badge badge-open">${remaining} place${remaining > 1 ? 's' : ''}</span>`}
@@ -79,7 +80,8 @@ function renderPlayersModal(matchId) {
             <span style="font-size:11px;color:var(--txt3);min-width:20px;text-align:right">
               ${members.length + i + 1}.
             </span>
-            <div class="avatar avatar-sm" style="background:#fdf0dc;color:#c97a10">${initials}</div>
+            <div class="avatar avatar-sm" style="background:#fdf0dc;color:#c97a10"
+                 title="${escHtml(e.name)}">${initials}</div>
             <div>
               <div class="player-name">${escHtml(e.name)}</div>
               <div class="player-sub player-external">Invité externe</div>
@@ -135,7 +137,7 @@ function renderPlayersModal(matchId) {
     /* Match complet */
     : `<div style="margin-top:12px;padding:10px 14px;background:var(--red-light);
                    border-radius:var(--r-md);font-size:13px;color:var(--red)">
-         Match complet — limite de ${CONFIG.MAX_PLAYERS} joueurs atteinte.
+         Match complet — limite de ${max} joueur${max > 1 ? 's' : ''} atteinte.
        </div>`}
 
     <div class="modal-footer">

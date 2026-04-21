@@ -71,7 +71,7 @@ function _renderAdminMatches() {
     <div class="section-bar">
       <div style="font-size:14px;color:var(--txt2)">
         ${DB.matches.length} match${DB.matches.length > 1 ? 's' : ''}
-        · max ${CONFIG.MAX_PLAYERS} joueurs par session
+        · défaut ${CONFIG.MAX_PLAYERS} places / session
       </div>
       <button class="btn btn-primary btn-sm"
               onclick="openMatchModal(null)" style="gap:5px">
@@ -114,23 +114,20 @@ function _renderAdminMembers() {
           </div>
         </div>
         <div class="player-row-right">
-          ${u.isAdmin ? `<span class="badge badge-admin">${icon('shield')} Admin</span>` : ''}
 
           ${!isSelf ? `
-            <!-- Toggle rôle admin -->
-            <label class="toggle"
-                   title="${u.isAdmin ? 'Retirer les droits admin' : 'Accorder les droits admin'}">
-              <input type="checkbox"
-                     ${u.isAdmin ? 'checked' : ''}
-                     onchange="App.setAdminRole(${u.id}, this.checked)">
-              <span class="toggle-slider"></span>
-            </label>
+            <!-- Bouton "Admin" : coloré si admin, grisé sinon. Clic = bascule le rôle -->
+            <button
+              class="btn-admin-role${u.isAdmin ? ' is-admin' : ''}"
+              onclick="App.setAdminRole(${u.id}, ${!u.isAdmin})"
+              title="${u.isAdmin ? 'Retirer les droits admin' : 'Accorder les droits admin'}">
+              ${icon('shield')} Admin
+            </button>
 
             <!-- Supprimer le membre -->
-            <button class="btn btn-xs btn-delete"
+            <button class="btn btn-xs btn-delete btn-icon"
                     title="Supprimer ce membre"
-                    onclick="confirmDeleteMember(${u.id})"
-                    style="gap:4px">
+                    onclick="confirmDeleteMember(${u.id})">
               ${icon('user_x')}
             </button>
           ` : `<span style="font-size:12px;color:var(--txt3)">Non modifiable</span>`}
@@ -151,7 +148,7 @@ function _renderAdminMembers() {
     </div>
 
     <p style="font-size:12px;color:var(--txt3);margin-top:10px">
-      Le toggle active ou retire le rôle admin.
+      Le bouton "Admin" bascule le rôle au clic — coloré = admin actif, grisé = membre standard.
       Vous ne pouvez pas modifier votre propre rôle.
       La suppression désinscrit le membre de tous les matchs.
     </p>`;

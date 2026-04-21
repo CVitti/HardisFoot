@@ -21,6 +21,24 @@ function escHtml(str) {
 
 
 /* ────────────────────────────────────────────────────────
+   Capacité d'un match
+   ──────────────────────────────────────────────────────── */
+
+/**
+ * Retourne le nombre maximum de joueurs pour un match donné.
+ * Utilise match.maxPlayers s'il est défini, sinon la valeur
+ * globale CONFIG.MAX_PLAYERS (18 par défaut).
+ * @param {object} match
+ * @returns {number}
+ */
+function matchMax(match) {
+  return (match.maxPlayers && match.maxPlayers > 0)
+    ? match.maxPlayers
+    : CONFIG.MAX_PLAYERS;
+}
+
+
+/* ────────────────────────────────────────────────────────
    Calculs liés aux matchs
    ──────────────────────────────────────────────────────── */
 
@@ -34,22 +52,22 @@ function matchFilled(match) {
 }
 
 /**
- * Retourne le nombre de places restantes.
+ * Retourne le nombre de places restantes pour ce match.
  * @param {object} match
  * @returns {number}
  */
 function matchRemaining(match) {
-  return CONFIG.MAX_PLAYERS - matchFilled(match);
+  return matchMax(match) - matchFilled(match);
 }
 
 /**
- * Indique si un joueur peut encore s'inscrire.
+ * Indique si un joueur peut encore s'inscrire à ce match.
  * Cette vérification doit AUSSI être faite côté serveur.
  * @param {object} match
  * @returns {boolean}
  */
 function canJoin(match) {
-  return matchFilled(match) < CONFIG.MAX_PLAYERS;
+  return matchFilled(match) < matchMax(match);
 }
 
 /**
@@ -58,17 +76,18 @@ function canJoin(match) {
  * @returns {{ cls: string, text: string, ico: string }}
  */
 function placesPillInfo(match) {
+  const max       = matchMax(match);
   const filled    = matchFilled(match);
-  const remaining = matchRemaining(match);
-  const pct       = Math.round(filled / CONFIG.MAX_PLAYERS * 100);
+  const remaining = max - filled;
+  const pct       = Math.round(filled / max * 100);
   const isPast    = isMatchPast(match);
   const isFull    = remaining <= 0;
   const isAlmost  = !isFull && pct >= CONFIG.ALMOST_FULL_THRESHOLD;
 
-  if (isPast)    return { cls: 'past',   text: 'Passé',    ico: icon('warn') };
-  if (isFull)    return { cls: 'full',   text: 'Complet',  ico: '' };
-  if (isAlmost)  return { cls: 'almost', text: `${remaining} place${remaining > 1 ? 's' : ''}`, ico: icon('warn') };
-  return           { cls: 'open',   text: `${remaining} place${remaining > 1 ? 's' : ''}`, ico: '' };
+  if (isPast)   return { cls: 'past',   text: 'Expiré' };
+  if (isFull)   return { cls: 'full',   text: 'Complet' };
+  if (isAlmost) return { cls: 'almost', text: `${remaining} place${remaining > 1 ? 's' : ''}`};
+  return          { cls: 'open',   text: `${remaining} place${remaining > 1 ? 's' : ''}` };
 }
 
 /**
@@ -77,8 +96,9 @@ function placesPillInfo(match) {
  * @returns {string}
  */
 function progressFillClass(match) {
-  const pct  = Math.round(matchFilled(match) / CONFIG.MAX_PLAYERS * 100);
-  const full = matchFilled(match) >= CONFIG.MAX_PLAYERS;
+  const max  = matchMax(match);
+  const pct  = Math.round(matchFilled(match) / max * 100);
+  const full = matchFilled(match) >= max;
   if (full) return 'full';
   if (pct >= CONFIG.ALMOST_FULL_THRESHOLD) return 'almost';
   return '';

@@ -35,6 +35,14 @@ function openMatchModal(matchId) {
       <div class="form-hint">Modifiable ponctuellement si le lieu change.</div>
     </div>
 
+    <!-- Nombre de places maximum (propre à ce match) -->
+    <div class="form-group">
+      <label class="form-label">Nombre de places maximum</label>
+      <input id="f-max" type="number" min="2" max="100"
+             value="${isEdit ? matchMax(match) : CONFIG.MAX_PLAYERS}">
+      <div class="form-hint">Par défaut ${CONFIG.MAX_PLAYERS} places. Modifiable match par match.</div>
+    </div>
+
     <!-- Description -->
     <div class="form-group">
       <label class="form-label">Note / description <span style="color:var(--txt3)">(optionnel)</span></label>
@@ -60,6 +68,7 @@ function saveMatch(matchId) {
   const date        = document.getElementById('f-date').value;
   const time        = document.getElementById('f-time').value;
   const lieu        = document.getElementById('f-lieu').value.trim() || CONFIG.LIEU_DEFAUT;
+  const maxPlayers  = Math.max(2, parseInt(document.getElementById('f-max').value) || CONFIG.MAX_PLAYERS);
   const description = document.getElementById('f-desc').value.trim();
 
   if (!date) { toast('La date est requise.', 'error'); return; }
@@ -69,7 +78,7 @@ function saveMatch(matchId) {
 
   if (matchId !== null) {
     // Mise à jour
-    App.updateMatch(matchId, { date, time, lieu, description });
+    App.updateMatch(matchId, { date, time, lieu, maxPlayers, description });
   } else {
     // Création — calcule le numéro de session pour ce jour
     const existing = DB.matches.filter(m => m.date === date);
@@ -77,7 +86,7 @@ function saveMatch(matchId) {
       ? 1
       : Math.max(...existing.map(m => m.session || 1)) + 1;
 
-    App.createMatch({ date, time, lieu, session, description });
+    App.createMatch({ date, time, lieu, session, maxPlayers, description });
   }
 }
 

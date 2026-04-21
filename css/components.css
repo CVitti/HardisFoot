@@ -87,12 +87,13 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
   padding: 5px 14px;
   border-radius: 99px;
   flex-shrink: 0;
   letter-spacing: .01em;
+  text-align: center;
 }
 .places-pill.open   { background: var(--green-light); color: var(--green-dark); border: 1px solid rgba(26,158,96,.2); }
 .places-pill.almost { background: var(--amber-light); color: var(--amber);      border: 1px solid rgba(201,122,16,.2); }
@@ -117,12 +118,50 @@
 
 /* Pile d'avatars (chevauchement) */
 .av-stack { display: flex; }
-.av-stack .avatar { border: 2px solid var(--surface); margin-left: -7px; }
+.av-stack .avatar { border: 2px solid var(--surface); margin-left: -7px; cursor: default; }
 .av-stack .avatar:first-child { margin-left: 0; }
 
 
 /* ────────────────────────────────────────────────────────
-   TOGGLE (interrupteur admin)
+   BOUTON RÔLE ADMIN (onglet Membres)
+   Texte "Admin" : coloré quand actif, grisé quand inactif.
+   Un clic bascule le rôle.
+   ──────────────────────────────────────────────────────── */
+.btn-admin-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-family: var(--fb);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  cursor: pointer;
+  border: 1.5px solid var(--border-md);
+  background: var(--surface2);
+  color: var(--txt3);
+  transition: all var(--tr);
+  user-select: none;
+}
+.btn-admin-role svg { width: 13px; height: 13px; }
+.btn-admin-role:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+/* État actif : admin accordé */
+.btn-admin-role.is-admin {
+  background: var(--blue-light);
+  color: var(--blue);
+  border-color: rgba(26, 107, 181, .35);
+}
+.btn-admin-role.is-admin:hover {
+  background: #fdeaea;
+  color: var(--red);
+  border-color: rgba(217, 53, 53, .3);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   TOGGLE (interrupteur — conservé pour compatibilité)
    ──────────────────────────────────────────────────────── */
 .toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
 .toggle input { opacity: 0; width: 0; height: 0; }
@@ -160,7 +199,6 @@
   box-shadow: var(--sh-sm);
 }
 
-
 /* ────────────────────────────────────────────────────────
    CARTE MATCH
    ──────────────────────────────────────────────────────── */
@@ -171,12 +209,12 @@
   padding: 18px 20px;
   box-shadow: var(--sh-sm);
   transition: box-shadow var(--tr), transform var(--tr);
-  animation: fadeUp .22s ease backwards;
+  animation: fadeUp 0.8s ease backwards;
 }
 .match-card:hover { box-shadow: var(--sh-md); transform: translateY(-1px); }
 .match-card + .match-card { margin-top: 10px; }
 
-/* État : match passé */
+/* État : match expiré */
 .match-card.past {
   opacity: .72;
   border-style: dashed;
@@ -240,7 +278,7 @@
 }
 .progress-track {
   flex: 1;
-  height: 5px;
+  height: 12px;
   border-radius: 99px;
   background: var(--surface2);
   overflow: hidden;
@@ -253,7 +291,7 @@
 }
 .progress-fill.almost { background: var(--amber); }
 .progress-fill.full   { background: var(--red); }
-.progress-text { font-size: 12px; color: var(--txt3); white-space: nowrap; }
+.progress-text { font-size: 16px; color: var(--txt3); white-space: nowrap; }
 
 /* Rangée d'actions admin sur une carte */
 .admin-btn-row {

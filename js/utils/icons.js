@@ -1,83 +1,106 @@
 /* ════════════════════════════════════════════════════════
-   utils/icons.js — Bibliothèque d'icônes SVG inline
-   Ajouter une entrée ici pour introduire une nouvelle icône.
-   ════════════════════════════════════════════════════════ */
+utils/icons.js — Bibliothèque d'icônes SVG inline
+Ajouter une entrée ici pour introduire une nouvelle icône.
+════════════════════════════════════════════════════════ */
 
 const ICONS = {
   pin: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z"
-          stroke="currentColor" stroke-width="1.2"/>
-    <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/>
-  </svg>`,
-
+          <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z"
+                stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+        </svg>`,
+  
   clock: `<svg viewBox="0 0 16 16" fill="none">
-    <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M8 5.5V8l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-  </svg>`,
-
+            <circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M8 5.5V8l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>`,
+  
   users: `<svg viewBox="0 0 16 16" fill="none">
-    <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M2 13c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <circle cx="11.5" cy="5" r="1.5" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M14 13c0-1.7-1.1-3.1-2.5-3.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-  </svg>`,
+            <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M2 13c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="11.5" cy="5" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M14 13c0-1.7-1.1-3.1-2.5-3.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>`,
+  
+  edit:  `<svg viewBox="0 0 16 16" fill="none">
+            <path d="M11 2l3 3-8 8H3v-3l8-8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>`,
+  
+  google_icon: `<svg style="width:20px;height:20px;flex-shrink:0" viewBox="0 0 24 24">
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                  <path d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.83z" fill="#FBBC05"/>
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.83c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                </svg>`,
+  
+ football_green: `<svg viewBox="0 0 289.04 290.39">
+                    <defs id="defs1452">
+                      <radialGradient id="id0" gradientUnits="userSpaceOnUse" cy="86.921" cx="70.284" r="79.477">
+                        <stop id="stop1353" style="stop-color:#ffffff" offset="0" />
+                        <stop id="stop1355" style="stop-color:#fdfcc9" offset=".36863" />
+                        <stop id="stop1357" style="stop-color:#cc9933" offset="1" />
+                      </radialGradient>
+                      <style id="style1350" type="text/css">.fil0 {fill:#000000} .fil1 {fill:url(#id0)}</style>
+                    </defs>
+                    <path id="path1458" style="fill:#1a9e60" d="m133.04 289.87c-60.9-4.19-114.38-52.4-129.47-110.76-13.921-60.52 13.73-128.67 67.683-160.26 34.707-20.815 78.247-23.417 116.66-12.576 47.44 14.639 83.55 57.028 96.23 104.33 11.39 43.58 3.18 93.06-27.09 127.41-27.42 34.28-71.24 54.04-115.06 52.27-2.99-0.06-5.97-0.2-8.95-0.41zm36.29-6.86c10.93-0.96 9.01-4.33-0.93-5.18-17.76-3.43-36.93-3.52-54.07 2.5 15.09 7.3 35.13 5.42 52.02 3.24l2.98-0.56zm-53.8-9.64c7.8-7.99-0.33-27.09-7.15-34.65-15.231-7.8-27.042-20.56-40.974-30.18-10.493-3.83-20.727 3.46-30.869 5.93-0.045 10.06-0.699 21.42 8.121 28.42 14.52 14.39 32.046 27.01 51.825 32.74 6.357 0.29 13.027-0.09 19.047-2.26zm83.51 0.4c25.27-10.94 48.98-28.51 63.23-52.43 5.13-6.88 8.9-18.93-4.5-14.94-16.84 10.62-32.04 23.77-49.29 33.84-10.46 8.3-17.99 19.73-25.43 30.65 2.59 6.06 11.02 4.61 15.99 2.88zm17.13-43.94c12.7-10.46 31.09-17.2 37.76-33.07 3.01-12.48 3.25-25.39 4.5-38.12-12.66-11.27-28.2-18.92-43.4-26.14-15.03 1.21-27.17 14.59-39.05 23.27-6.33 3.5-4.7 11.38-6.42 17.43-2.3 14.12-4.97 28.21-6.5 42.45 11.82 8.77 25.01 16.83 39.38 20.21 5.2 0.07 9.51-3.46 13.73-6.03zm-90.61 2.2c11.5-4.41 26.73-7.73 32.13-19.96 4-17.14 6.23-34.68 8.35-52.13-11.43-10.91-23.64-22.41-38.63-28.1-12.92-0.2-23.88 8.97-35.387 13.98-15.479 4.21-20.855 18.34-21.532 32.93-4.541 14.43 0.671 29.25 13.723 37.2 11.4 8.43 26.056 21.88 41.346 16.08zm-96.299-20.23c-9.334-17.31-15.771-36.27-18.341-55.77-9.2309 1.86-0.841 24.58 1.703 33.85 4.352 12.53 11.01 24.04 17.914 35.29 1.263-4.63 2.011-9.23-1.276-13.37zm-4.02-77.06c4.076-5.84 10.564-10.45 13.009-17.12 4.315-20.193 11.354-39.686 21.421-57.738-0.425-11.663-13.414-18.749-19.881-5.897-18.429 23.791-32.885 52.785-33.521 83.375-2.423 10.5 6.685 18.13 11.931 5.71 2.351-2.78 4.697-5.55 7.041-8.33zm237.3 14.46c7.81-10.28 18.6-22.48 15.8-36.4-4.89-26.397-18.41-51.461-39.18-68.664-6.16-2.622-17.43-12.269-21.73-3.157-6.36 12.242-22.17 23.816-16.47 39.062 4.88 15.05 8.44 30.779 15.56 44.949 13.1 10.25 28.27 18.21 43.52 24.94l2.5-0.73zm-174.23-6.84c12.093-6.12 23.833-12.89 35.633-19.57 3.97-13.92 8.96-27.528 13.61-41.221 0.65-14.807-12.53-25.446-21.34-35.83-8.66-13.891-23.304-3.237-33.989 1.844-23.518 12.591-28.917 40.309-36.908 63.447 1.109 8.66 9.023 15.89 14.799 22.37 7.983 8.03 16.958 18.77 28.195 8.96zm86.733-74.848c6.25-0.86 13.24-0.23 19.05-2.005 8.68-9.375 16.33-20.359 19.95-32.682-4.37-12.422-18.84-18.083-30.46-22.311-14.8-4.4152-30.65-6.5773-46.01-4.8329-11.09 5.6769-30.98 22.15-19.75 34.919 8.23 9.818 16.98 19.175 25.9 28.366 10.46 0.103 20.89-0.716 31.32-1.454z"/>
+                  </svg>`,
 
-  edit: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M11 2l3 3-8 8H3v-3l8-8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
-  </svg>`,
-
+  football_black:  `<svg viewBox="0 0 289.04 290.39">
+                  <defs id="defs1452">
+                    <radialGradient id="id0" gradientUnits="userSpaceOnUse" cy="86.921" cx="70.284" r="79.477">
+                      <stop id="stop1353" style="stop-color:#ffffff" offset="0" />
+                      <stop id="stop1355" style="stop-color:#fdfcc9" offset=".36863" />
+                      <stop id="stop1357" style="stop-color:#cc9933" offset="1" />
+                    </radialGradient>
+                    <style id="style1350" type="text/css">.fil0 {fill:#000000} .fil1 {fill:url(#id0)}</style>
+                  </defs>
+                  <path id="path1458" style="fill:#000000" d="m133.04 289.87c-60.9-4.19-114.38-52.4-129.47-110.76-13.921-60.52 13.73-128.67 67.683-160.26 34.707-20.815 78.247-23.417 116.66-12.576 47.44 14.639 83.55 57.028 96.23 104.33 11.39 43.58 3.18 93.06-27.09 127.41-27.42 34.28-71.24 54.04-115.06 52.27-2.99-0.06-5.97-0.2-8.95-0.41zm36.29-6.86c10.93-0.96 9.01-4.33-0.93-5.18-17.76-3.43-36.93-3.52-54.07 2.5 15.09 7.3 35.13 5.42 52.02 3.24l2.98-0.56zm-53.8-9.64c7.8-7.99-0.33-27.09-7.15-34.65-15.231-7.8-27.042-20.56-40.974-30.18-10.493-3.83-20.727 3.46-30.869 5.93-0.045 10.06-0.699 21.42 8.121 28.42 14.52 14.39 32.046 27.01 51.825 32.74 6.357 0.29 13.027-0.09 19.047-2.26zm83.51 0.4c25.27-10.94 48.98-28.51 63.23-52.43 5.13-6.88 8.9-18.93-4.5-14.94-16.84 10.62-32.04 23.77-49.29 33.84-10.46 8.3-17.99 19.73-25.43 30.65 2.59 6.06 11.02 4.61 15.99 2.88zm17.13-43.94c12.7-10.46 31.09-17.2 37.76-33.07 3.01-12.48 3.25-25.39 4.5-38.12-12.66-11.27-28.2-18.92-43.4-26.14-15.03 1.21-27.17 14.59-39.05 23.27-6.33 3.5-4.7 11.38-6.42 17.43-2.3 14.12-4.97 28.21-6.5 42.45 11.82 8.77 25.01 16.83 39.38 20.21 5.2 0.07 9.51-3.46 13.73-6.03zm-90.61 2.2c11.5-4.41 26.73-7.73 32.13-19.96 4-17.14 6.23-34.68 8.35-52.13-11.43-10.91-23.64-22.41-38.63-28.1-12.92-0.2-23.88 8.97-35.387 13.98-15.479 4.21-20.855 18.34-21.532 32.93-4.541 14.43 0.671 29.25 13.723 37.2 11.4 8.43 26.056 21.88 41.346 16.08zm-96.299-20.23c-9.334-17.31-15.771-36.27-18.341-55.77-9.2309 1.86-0.841 24.58 1.703 33.85 4.352 12.53 11.01 24.04 17.914 35.29 1.263-4.63 2.011-9.23-1.276-13.37zm-4.02-77.06c4.076-5.84 10.564-10.45 13.009-17.12 4.315-20.193 11.354-39.686 21.421-57.738-0.425-11.663-13.414-18.749-19.881-5.897-18.429 23.791-32.885 52.785-33.521 83.375-2.423 10.5 6.685 18.13 11.931 5.71 2.351-2.78 4.697-5.55 7.041-8.33zm237.3 14.46c7.81-10.28 18.6-22.48 15.8-36.4-4.89-26.397-18.41-51.461-39.18-68.664-6.16-2.622-17.43-12.269-21.73-3.157-6.36 12.242-22.17 23.816-16.47 39.062 4.88 15.05 8.44 30.779 15.56 44.949 13.1 10.25 28.27 18.21 43.52 24.94l2.5-0.73zm-174.23-6.84c12.093-6.12 23.833-12.89 35.633-19.57 3.97-13.92 8.96-27.528 13.61-41.221 0.65-14.807-12.53-25.446-21.34-35.83-8.66-13.891-23.304-3.237-33.989 1.844-23.518 12.591-28.917 40.309-36.908 63.447 1.109 8.66 9.023 15.89 14.799 22.37 7.983 8.03 16.958 18.77 28.195 8.96zm86.733-74.848c6.25-0.86 13.24-0.23 19.05-2.005 8.68-9.375 16.33-20.359 19.95-32.682-4.37-12.422-18.84-18.083-30.46-22.311-14.8-4.4152-30.65-6.5773-46.01-4.8329-11.09 5.6769-30.98 22.15-19.75 34.919 8.23 9.818 16.98 19.175 25.9 28.366 10.46 0.103 20.89-0.716 31.32-1.454z"/>
+                </svg>`,
+  
   trash: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M3 5h10M6 5V3h4v2M13 5l-1 8H4L3 5"
-          stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
-
-  plus: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-  </svg>`,
-
+            <path d="M3 5h10M6 5V3h4v2M13 5l-1 8H4L3 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`,
+  
+  plus:  `<svg viewBox="0 0 16 16" fill="none">
+            <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>`,
+  
   check: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`,
-
-  shield: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M8 2l5 2v3.5c0 3-2.2 5-5 6-2.8-1-5-3-5-6V4l5-2z"
-          stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-  </svg>`,
-
-  copy: `<svg viewBox="0 0 16 16" fill="none">
-    <rect x="5" y="5" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M3 11V3.5A1.5 1.5 0 014.5 2H11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-  </svg>`,
-
-  user_x: `<svg viewBox="0 0 16 16" fill="none">
-    <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M2 13c0-2.2 1.8-4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <path d="M11 9.5l3 3M14 9.5l-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-  </svg>`,
-
-  football: `<svg viewBox="0 0 20 20" fill="none">
-    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/>
-    <path d="M10 4l1.5 4.5H16l-3.5 2.5 1.2 4L10 12.5 6.3 15l1.2-4L4 8.5h4.5z"
-          fill="currentColor" opacity=".35"/>
-  </svg>`,
-
-  warn: `<svg viewBox="0 0 16 16" fill="none">
-    <path d="M8 2L14.5 13H1.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M8 6v3M8 11v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-  </svg>`,
-
-  person_add: `<svg viewBox="0 0 16 16" fill="none">
-    <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M2 13c0-2.2 1.8-4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <path d="M12 9v4M10 11h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-  </svg>`,
+            <path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`,
+  
+  shield:  `<svg viewBox="0 0 16 16" fill="none">
+              <path d="M8 2l5 2v3.5c0 3-2.2 5-5 6-2.8-1-5-3-5-6V4l5-2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            </svg>`,
+  
+  copy:  `<svg viewBox="0 0 16 16" fill="none">
+           <rect x="5" y="5" width="8" height="9" rx="1.5" stroke="currentColor" stroke-width="1.2"/>
+           <path d="M3 11V3.5A1.5 1.5 0 014.5 2H11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>`,
+  
+  user_x:  `<svg viewBox="0 0 16 16" fill="none">
+              <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M2 13c0-2.2 1.8-4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+             <path d="M11 9.5l3 3M14 9.5l-3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>`,
+  
+  football:  `<svg viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M10 4l1.5 4.5H16l-3.5 2.5 1.2 4L10 12.5 6.3 15l1.2-4L4 8.5h4.5z" fill="currentColor" opacity=".35"/>
+              </svg>`,
+  
+  person_add:  `<svg viewBox="0 0 16 16" fill="none">
+                  <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M2 13c0-2.2 1.8-4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  <path d="M12 9v4M10 11h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+                </svg>`,
 };
 
 /**
- * Retourne le SVG inline d'une icône.
- * @param {string} name  Clé dans ICONS
- * @returns {string} SVG HTML ou chaîne vide si introuvable
- */
+* Retourne le SVG inline d'une icône.
+* @param {string} name  Clé dans ICONS
+* @returns {string} SVG HTML ou chaîne vide si introuvable
+*/
 function icon(name) {
   return ICONS[name] || '';
 }
